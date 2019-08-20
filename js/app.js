@@ -24,13 +24,18 @@ function addFilm(e){
     const directorvalue = director.value.trim();
     const urlvalue = url.value.trim();
 
+
     if( titlevalue === "" || directorvalue === "" || url === ""){
         // error
+
+        ui.showMessage('Zehmet olmasa inputlari doldurun','danger');
+
     } else {
         // create new Film
         const newFilm = new Film(titlevalue,directorvalue,urlvalue);
 
         ui.addFilmToUI(newFilm);  // interface film add etme
+        ui.showMessage('Film ugurla yuklendu', 'success');
     }
 
     ui.clearInputs(title, director, url)

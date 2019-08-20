@@ -31,3 +31,42 @@ UI.prototype.clearInputs = function(el1,el2,el3){
     el2.value = "";
     el3.value = "";
 }
+
+
+UI.prototype.showMessage = function(message,type){
+
+    const firstcardbody = document.querySelector('.card-body');
+
+    // const div = `
+    //     <div class = "alert alert-${type}"
+    //     role = "alert" >
+    //         ${message}
+    //     </div>
+    // `;
+
+
+    // firstcardbody.innerHTML += div;
+
+
+    
+    
+
+    // setTimeout(function(){
+    //     div.remove();
+    // },1000)
+
+
+
+    const div = document.createElement('div');
+    div.className = `alert alert-${type}`;
+    div.textContent = message;
+
+
+    firstcardbody.appendChild(div);
+
+    setTimeout(function(){
+        div.remove();
+    },1500)
+
+
+}
