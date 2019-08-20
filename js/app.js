@@ -2,7 +2,7 @@ const form = document.getElementById('film-form');
 const title =document.querySelector('#title');
 const director = document.querySelector('#director');
 const url = document.querySelector('#url');
-
+const secondcardbody = document.querySelectorAll('.card-body')[1];
 
 // create ui object
 const ui = new UI();
@@ -17,7 +17,8 @@ function eventListeners(){
         let films;
         films = storage.getFilmsStorage();
         ui.loadAllfilms(films);
-    })
+    });
+    secondcardbody.addEventListener('click',deleteFilm);
 }
 
 
@@ -49,3 +50,37 @@ function addFilm(e){
 
     e.preventDefault();
 }
+
+
+function deleteFilm(e){
+    if(e.target.id === "delete-film"){
+        ui.deleteFilmfromUI(e.target);
+        storage.deleteFilmfromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+        ui.showMessage('Ugurla silindi','success');
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

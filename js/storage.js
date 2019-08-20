@@ -23,3 +23,15 @@ Storage.prototype.getFilmsStorage = function(){
 
     return films;
 }
+
+Storage.prototype.deleteFilmfromStorage = function(title){
+    let films = this.getFilmsStorage();
+
+    films.forEach(function(film,index){
+        if(film.title === title){
+            films.splice(index,1);
+        }
+    })
+
+    localStorage.setItem('films',JSON.stringify(films));
+}

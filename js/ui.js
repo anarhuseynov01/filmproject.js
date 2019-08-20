@@ -82,9 +82,14 @@ UI.prototype.loadAllfilms = function(films){
                         class="img-fluid img-thumbnail">
                     </td>
                         <td>${film.title}</td>
-                        <td> ${film.director}</td>
+                        <td> ${film.directory}</td>
                         <td><a href="#" id="delete-film" class="btn btn-danger">Filmi Sil</a></td>
                 </tr>
         `;
     });
+}
+
+
+UI.prototype.deleteFilmfromUI = function(element){
+    element.parentElement.parentElement.remove();
 }
