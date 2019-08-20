@@ -7,11 +7,17 @@ const url = document.querySelector('#url');
 // create ui object
 const ui = new UI();
 
+const storage = new Storage();
 
 // all events load
 
 function eventListeners(){
     form.addEventListener('submit',addFilm);
+    document.addEventListener('DOMContentLoaded',function(){
+        let films;
+        films = storage.getFilmsStorage();
+        ui.loadAllfilms(films);
+    })
 }
 
 
@@ -35,6 +41,7 @@ function addFilm(e){
         const newFilm = new Film(titlevalue,directorvalue,urlvalue);
 
         ui.addFilmToUI(newFilm);  // interface film add etme
+        storage.addFilmToStorage(newFilm); // Storaga film yukleme
         ui.showMessage('Film ugurla yuklendu', 'success');
     }
 
