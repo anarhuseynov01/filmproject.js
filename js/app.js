@@ -3,6 +3,7 @@ const title =document.querySelector('#title');
 const director = document.querySelector('#director');
 const url = document.querySelector('#url');
 const secondcardbody = document.querySelectorAll('.card-body')[1];
+const clearall = document.querySelector('#clear-films');
 
 // create ui object
 const ui = new UI();
@@ -19,6 +20,7 @@ function eventListeners(){
         ui.loadAllfilms(films);
     });
     secondcardbody.addEventListener('click',deleteFilm);
+    clearall.addEventListener('click',clearAll)
 }
 
 
@@ -31,12 +33,10 @@ function addFilm(e){
     const directorvalue = director.value.trim();
     const urlvalue = url.value.trim();
 
-
-    if( titlevalue === "" || directorvalue === "" || url === ""){
+    if (titlevalue === "" ||  directorvalue === "" || urlvalue === "") {
         // error
-
         ui.showMessage('Zehmet olmasa inputlari doldurun','danger');
-
+         
     } else {
         // create new Film
         const newFilm = new Film(titlevalue,directorvalue,urlvalue);
@@ -44,11 +44,14 @@ function addFilm(e){
         ui.addFilmToUI(newFilm);  // interface film add etme
         storage.addFilmToStorage(newFilm); // Storaga film yukleme
         ui.showMessage('Film ugurla yuklendu', 'success');
+        
     }
 
     ui.clearInputs(title, director, url)
 
     e.preventDefault();
+
+    
 }
 
 
@@ -62,7 +65,12 @@ function deleteFilm(e){
 
 
 
-
+function clearAll(){
+    if(confirm('Are you sure?')){
+         ui.clearAllfromUi();
+         storage.clearAllfromUi();
+    }
+}
 
 
 

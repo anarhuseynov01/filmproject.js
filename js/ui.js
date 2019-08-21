@@ -19,8 +19,8 @@ UI.prototype.addFilmToUI = function(newFilm){
             <td>
                 <img src="${newFilm.url}" class="img-fluid img-thumbnail"></td>
                 <td>${newFilm.title}</td>
-                <td>${newFilm.director}</td>
-                <td><a href="#" id="delete-film" class="btn btn-danger">Filmi Sil</a>
+                <td>${newFilm.directory}</td>
+                <td><a href="#" id="delete-film" class="btn btn-danger">Delete Film</a>
             </td>
         </tr>
     `
@@ -49,12 +49,12 @@ UI.prototype.showMessage = function(message,type){
 
 
     
-    
 
     // setTimeout(function(){
-    //     div.remove();
+    //     firstcardbody.lastElementChild.remove();
     // },1000)
 
+    // console.log(firstcardbody);
 
 
     const div = document.createElement('div');
@@ -92,4 +92,13 @@ UI.prototype.loadAllfilms = function(films){
 
 UI.prototype.deleteFilmfromUI = function(element){
     element.parentElement.parentElement.remove();
+}
+
+UI.prototype.clearAllfromUi = function(){
+    const filmList = document.querySelector('#films');
+
+    while(filmList.firstElementChild !== null) {
+        // console.log(filmList.firstElementChild);
+        filmList.firstElementChild.remove();
+    }
 }
