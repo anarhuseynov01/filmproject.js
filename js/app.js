@@ -6,9 +6,9 @@ const secondcardbody = document.querySelectorAll('.card-body')[1];
 const clearall = document.querySelector('#clear-films');
 
 // create ui object
-const ui = new UI();
+// const ui = new UI();
 
-const storage = new Storage();
+// const storage = new Storage();
 
 // all events load
 
@@ -16,8 +16,8 @@ function eventListeners(){
     form.addEventListener('submit',addFilm);
     document.addEventListener('DOMContentLoaded',function(){
         let films;
-        films = storage.getFilmsStorage();
-        ui.loadAllfilms(films);
+        films = Storage.getFilmsStorage();
+        UI.loadAllfilms(films);
     });
     secondcardbody.addEventListener('click',deleteFilm);
     clearall.addEventListener('click',clearAll)
@@ -28,26 +28,25 @@ eventListeners();
 
 
 function addFilm(e){
-
     const titlevalue = title.value.trim();
     const directorvalue = director.value.trim();
     const urlvalue = url.value.trim();
 
     if (titlevalue === "" ||  directorvalue === "" || urlvalue === "") {
         // error
-        ui.showMessage('Zehmet olmasa inputlari doldurun','danger');
+        UI.showMessage('Zehmet olmasa inputlari doldurun', 'danger');
          
     } else {
         // create new Film
         const newFilm = new Film(titlevalue,directorvalue,urlvalue);
 
-        ui.addFilmToUI(newFilm);  // interface film add etme
-        storage.addFilmToStorage(newFilm); // Storaga film yukleme
-        ui.showMessage('Film ugurla yuklendu', 'success');
+        UI.addFilmToUI(newFilm); // interface film add etme
+        Storage.addFilmToStorage(newFilm); // Storaga film yukleme
+        UI.showMessage('Film ugurla yuklendu', 'success');
         
     }
 
-    ui.clearInputs(title, director, url)
+    UI.clearInputs(title, director, url)
 
     e.preventDefault();
 
@@ -57,9 +56,9 @@ function addFilm(e){
 
 function deleteFilm(e){
     if(e.target.id === "delete-film"){
-        ui.deleteFilmfromUI(e.target);
-        storage.deleteFilmfromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
-        ui.showMessage('Ugurla silindi','success');
+        UI.deleteFilmfromUI(e.target);
+        Storage.deleteFilmfromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+        UI.showMessage('Ugurla silindi', 'success');
     }
 }
 
@@ -67,8 +66,8 @@ function deleteFilm(e){
 
 function clearAll(){
     if(confirm('Are you sure?')){
-         ui.clearAllfromUi();
-         storage.clearAllfromUi();
+         UI.clearAllfromUi();
+         Storage.clearAllfromUi();
     }
 }
 
